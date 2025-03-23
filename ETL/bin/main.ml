@@ -1,17 +1,11 @@
 open DataProcessing
 open DataReadWrite
 
-let origin =
-  try Sys.argv.(1) with _ -> ""
-
-let status =
-  try Sys.argv.(2) with _ -> ""
-
 let () =
   Printf.printf "Starting program\n";
   let orders = read_orders "./data/order.csv" in
-  let origin = origin in
-  let status = status in
+  let origin = try Sys.argv.(1) with _ -> "" in
+  let status = try Sys.argv.(2) with _ -> "" in
   let filtered_orders =
     if origin <> "" && status <> "" then
       List.filter (fun order -> order.origin = origin && order.status = status) orders
