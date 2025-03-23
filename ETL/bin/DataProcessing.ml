@@ -52,6 +52,12 @@ let parse_order_item (row: string list) : order_item option =
 let filter_order_items (order_id: int) (order_items: order_item list) : order_item list =
   List.filter (fun (order_item:order_item) -> order_item.order_id = order_id) order_items
 
+let filter_order_by_status(status: string) (orders: order list) : order list =
+  List.filter (fun (order:order) -> order.status = status) orders
+
+let filter_order_by_origin(origin: string) (orders: order list) : order list =
+  List.filter (fun (order:order) -> order.origin = origin) orders
+
 let get_order_total (order_id: int) (order_items_filtered: order_item list) : order_total option =
   match order_items_filtered with
   | [] -> None
