@@ -4,7 +4,7 @@ type order = {
   order_date: string;
   status: string;
   origin: string;
-} [@@warning "-69"]
+}
 
 type order_item = {
   order_id: int;
@@ -49,14 +49,11 @@ let parse_order_item (row: string list) : order_item option =
        with Failure _ -> None)
   | _ -> None
 
-let filter_order_items (order_id: int) (order_items: order_item list) : order_item list =
-  List.filter (fun (order_item:order_item) -> order_item.order_id = order_id) order_items
-
-let filter_order_by_status(status: string) (orders: order list) : order list =
+(* let filter_order_by_status(status: string) (orders: order list) : order list =
   List.filter (fun (order:order) -> order.status = status) orders
 
 let filter_order_by_origin(origin: string) (orders: order list) : order list =
-  List.filter (fun (order:order) -> order.origin = origin) orders
+  List.filter (fun (order:order) -> order.origin = origin) orders *)
 
 let get_order_total (order_id: int) (order_items_filtered: order_item list) : order_total option =
   match order_items_filtered with
@@ -73,5 +70,6 @@ let get_order_total (order_id: int) (order_items_filtered: order_item list) : or
 
 let compute_order_totals (orders: order list) (order_items: order_item list) : order_total list =
   List.filter_map (fun order ->
-    get_order_total order.id (filter_order_items order.id order_items)
+    List.filter (fun (order_item:order_item) -> order_item.order_id = order.id) order_items
+    |> get_order_total order.id 
   ) orders

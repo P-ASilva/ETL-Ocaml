@@ -1,10 +1,12 @@
 open DataProcessing
 
+(* Pure *)
+
 let read_orders (filename: string) : order list =
   match Csv.load filename with
   | [] -> []
-  | _ :: rows ->
-    List.filter_map (fun row -> parse_order row) rows
+  | _ :: rows -> (*<elem1> :: <Some List> / header :: tail *)
+    List.filter_map parse_order rows
 
 let read_order_items (filename: string) : order_item list =
   match Csv.load filename with
@@ -12,8 +14,9 @@ let read_order_items (filename: string) : order_item list =
     (* Printf.printf "Order item file empty\n"; *)
     []
   | _ :: rows ->
-    let items = List.filter_map (fun row -> parse_order_item row) rows in
-    items
+    List.filter_map parse_order_item rows
+
+(* Not Pure *)
 
 let write_order_totals_to_csv (filename: string) (order_totals: order_total list) : unit =
   let csv_data =
