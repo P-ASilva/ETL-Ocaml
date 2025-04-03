@@ -1,23 +1,26 @@
 open DataProcessing
 
-(* Pure *)
+(*Impure Functions for Reading and Writing CSV*)
 
+(**Reads the Orders from file and maps them to a type order list*)
 let read_orders (filename: string) : order list =
   match Csv.load filename with
   | [] -> []
-  | _ :: rows -> (*<elem1> :: <Some List> / header :: tail *)
+  | _ :: rows ->
     List.filter_map parse_order rows
 
+(**Reads the Order Items from file and maps them to a type order_item list*)
 let read_order_items (filename: string) : order_item list =
   match Csv.load filename with
   | [] ->
-    (* Printf.printf "Order item file empty\n"; *)
     []
   | _ :: rows ->
     List.filter_map parse_order_item rows
 
-(* Not Pure *)
-
+(**Writes the order totals to a CSV file.
+  @param filename The name of the CSV file to write to.
+  @param order_totals The list of order totals to write.
+  @return Unit () *)
 let write_order_totals_to_csv (filename: string) (order_totals: order_total list) : unit =
   let csv_data =
     List.map

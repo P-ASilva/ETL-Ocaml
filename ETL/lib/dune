@@ -1,2 +1,6 @@
 (library
- (name ETL))
+ (name ETL)
+ (public_name ETL)
+ (libraries csv))
+ (documentation
+  (package ETL))

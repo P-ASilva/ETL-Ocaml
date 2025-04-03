@@ -1,2 +1,4 @@
 (test
- (name test_ETL))
+ (name TestDataProcessing)
+ (modules TestDataProcessing)
+ (libraries ounit2 ETL))

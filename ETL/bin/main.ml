@@ -1,6 +1,10 @@
-open DataProcessing
-open DataReadWrite
+open ETL.DataProcessing
+open ETL.DataReadWrite
 
+(* Main program to read orders, filter them, compute totals, and write to CSV *)
+
+(** This program reads orders from a CSV file, filters them based on command line arguments,
+computes the total amount and taxes for each order, and writes the results to a new CSV file. *)
 let () =
   Printf.printf "Starting program\n";
   let orders = read_orders "./data/order.csv" in
