@@ -15,7 +15,7 @@ ETL stands for Extract, Transform, Load. It is a process used to gather data fro
 
 ## Project Structure
 
-### DataProcessing.ml: Pure Functions for ETL Processing
+### Lib : DataProcessing.ml: Pure Functions for ETL Processing
 
 The `DataProcessing.ml` file contains a set of pure functions designed to process and transform order-related data as part of an ETL (Extract, Transform, Load) pipeline. The module defines three primary record types: `order`, `order_item`, and `order_total`, which store structured information about customer orders, their corresponding items, and computed totals. The functions provided in this module focus on parsing CSV data into structured records, filtering orders based on specific criteria (such as status or origin), and computing total order values, including taxes.
 
@@ -25,7 +25,7 @@ Key pure functions include:
 
 Since all functions operate on input data without modifying external state, they adhere to functional programming principles, ensuring predictability, testability, and ease of parallel processing.
 
-### DataReadWrite.ml: File I/O for Orders and Order Items
+### Lib : DataReadWrite.ml: File I/O for Orders and Order Items
 
 The `DataReadWrite.ml` file is responsible for reading and writing order-related data, facilitating the ETL process by handling CSV files. Unlike `DataProcessing.ml`, which contains only pure functions, this module interacts with the file system and Csv library.
 
@@ -96,4 +96,4 @@ After execution, the processed data will be saved in `./data/order_totals.csv`.
 
 ## Disclaimer
 
-This project utilized AI models, including GPT-4, Deepseek and Leo (Brave Browser AI, based on LLaMA 2), to assist with debugging code and drafting initial documentation. All generated content was reviewed and refined to ensure accuracy and coherence.
+This project utilized AI models, including GPT-4, Deepseek and Leo (Brave Browser AI, based on LLaMA 2), to assist with debugging code and drafting initial documentation. All generated content was reviewed and refined to ensure accuracy and coherence. 

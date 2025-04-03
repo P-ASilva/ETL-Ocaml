@@ -22,13 +22,17 @@ The project consists of three main modules:
       ```
    - Initialize the project structure using Dune’s conventions.
 
-2. **Implementing DataProcessing.ml**
-   - Define record types for `order`, `order_item`, and `order_total`.
-   - Create pure functions for parsing, filtering, and aggregating data.
+2. **Implementing Data Processing Steps**
+   - Define record types for `order`, `order_item`, and `order_total` containing relevant fields.
+   - Create pure functions for parsing, filtering, and aggregating data. (Parsers -> Helper Functions)
+   - Use map, reduce and filter in order to aggregate data.
+   - *To improve* inner join is another valid aggregation method and could be used to streamline the filtering procces while aggregating data.
+   - *Note* filter_map can be necessary for option type returns if used prior in parsers.
    - Ensure functions remain side-effect-free, adhering to functional programming principles.
 
-3. **Implementing DataReadWrite.ml**
-   - Implement functions for reading and writing CSV files.
+3. **Implementing Reading and Writing data**
+   - Implement functions for reading and writing CSV files, separated from the others, as these have to be impure.
+   - *To improve* : Reading can be done from static files hosted online, and writing would work better on a local database. SQLite is recommended.
    - Ensure error handling and logging.
    - *To Improve* :  This project does not check all entries of the Csv files. For instance, to update the code in order to process DateTime fields, validating if the date is reasonable and matches proper formatting would be a necessary step.
 
@@ -44,15 +48,22 @@ The project consists of three main modules:
    - Apply transformations using `DataProcessing` functions.
    - Write results to CSV files.
 
+6. **Documentation**
+   - Use docstrings to document each relevant function to facilitate use and debbuging.
+   - *(Optional)* install odocs in order to check documentation in html format.
+
 ## Use of Generative AI
-Generative AI tools, including GPT-4, were used to support the development of code, debugging, and documentation. All outputs were thoroughly reviewed and refined to ensure accuracy.
+
+Generative AI tools, including GPT-4, were used to support the development of code, debugging, and documentation. All outputs were reviewed and refined to ensure accuracy.
+
    - Leo (Brave AI, Lhamma-02 based) provided help with dependency installs.
    - Deepseek was used for code debbuging, as gpt-04 proved to be lackluster for Ocaml;
-   - Gpt-04 was used to provide the templates for the READEME.md file and ths report;
-Use AI at your own discretion, documentation and summaries is the advised use. 
+   - Gpt-04 was used to provide the templates for the READEME.md file and this report;
+
+
+Use AI at your own discretion, documentation and summarization are the advised use cases. 
 
 ## Project Requirements
 - Functional programming principles must be strictly followed.
 - All modules must remain modular and as independent as possible.
-- CSV files are used to simulate a database environment.
-- The solution must handle invalid or malformed data gracefully.
+- The solution must handle invalid or malformed data.
