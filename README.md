@@ -21,14 +21,13 @@ The `DataProcessing.ml` file contains a set of pure functions designed to proces
 
 Key pure functions include:
 - **`parse_order`** and **`parse_order_item`**: Convert string-based CSV rows into structured `order` and `order_item` records while handling potential parsing failures.
-- **Filtering functions**: `filter_order_items`, `filter_order_by_status`, and `filter_order_by_origin`, which refine lists of orders and items based on given criteria.
 - **Aggregation functions**: `get_order_total` calculates the total amount and taxes for a given order, and `compute_order_totals` processes multiple orders to derive a list of total values.
 
 Since all functions operate on input data without modifying external state, they adhere to functional programming principles, ensuring predictability, testability, and ease of parallel processing.
 
 ### DataReadWrite.ml: File I/O for Orders and Order Items
 
-The `DataReadWrite.ml` file is responsible for reading and writing order-related data, facilitating the ETL process by handling CSV files. Unlike `DataProcessing.ml`, which contains pure functions, this module interacts with the file system.
+The `DataReadWrite.ml` file is responsible for reading and writing order-related data, facilitating the ETL process by handling CSV files. Unlike `DataProcessing.ml`, which contains only pure functions, this module interacts with the file system and Csv library.
 
 Key functions include:
 - **`read_orders`**: Reads an orders CSV file, parsing its contents into a list of `order` records.
@@ -87,6 +86,14 @@ To execute the ETL pipeline, ensure that you have an appropriate OCaml environme
 
 After execution, the processed data will be saved in `./data/order_totals.csv`.
 
+## Documentation
+
+- This project uses docstrings in code and odocs to view it outside of code, run :
+   ```sh
+   dune build @doc
+   ```
+- Them navigate to ``` ETL/_build/default/_doc/_html ```
+
 ## Disclaimer
 
-This project utilized AI models, including GPT-4 and Leo (Brave Browser AI, based on LLaMA 2), to assist with debugging code and drafting initial documentation. All generated content was reviewed and refined to ensure accuracy and coherence.
+This project utilized AI models, including GPT-4, Deepseek and Leo (Brave Browser AI, based on LLaMA 2), to assist with debugging code and drafting initial documentation. All generated content was reviewed and refined to ensure accuracy and coherence.
